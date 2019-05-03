@@ -56,11 +56,23 @@ var presetSimple,
   presetZebra,
   presetHoops;
 
+// SAVE BETA
+var gifLength = 200;
+var gifStart, gifEnd;
+var gifRecord = false;
+var canvas;
+
+var capturer = new CCapture({
+  framerate: 60,
+  format: 'gif',
+  workersPath: window.public_url + 'gif/',
+  verbose: true
+});
+
 function preload() {
   console.log('sketch - preload');
   // font = loadFont('assets/IBMPlexMono-Regular.otf');
-  // ui_font = loadFont(window.base_font_url + '/IBMPlexMono-Regular.otf');
-  window.font = loadFont(window.base_font_url + '/' + window.font_filename);
+  window.font = loadFont(window.public_url + 'fonts/' + window.font_filename);
   // font = loadFont('assets/custom_fonts/naoko-aa-02-semilight-webfont.woff');
 }
 
@@ -172,6 +184,10 @@ function setup() {
   presetHoops.mousePressed(hoopsSet);
 
   invertCheck.changed(inverter);
+
+  saveLoopSet = createButton('Save Loop');
+  saveLoopSet.position(147, 180);
+  saveLoopSet.mousePressed(saveLoop);
 }
 
 function draw() {
@@ -392,6 +408,20 @@ function draw() {
     pop();
   }
   pop();
+
+  if (gifRecord == true && frameCount == gifStart + 1) {
+    capturer.start();
+    capturer.capture(canvas);
+    print('start');
+  } else if (gifRecord == true && frameCount <= gifEnd) {
+    capturer.capture(canvas);
+    //      print("record");
+  } else if (gifRecord == true && frameCount == gifEnd + 1) {
+    capturer.stop();
+    capturer.save();
+    print('stop');
+    gifRecord = false;
+  }
 }
 
 function exportPNG() {
@@ -582,4 +612,20 @@ function hoopsSet() {
   strkColor = color(255);
   bkgdColor = color(0);
   bkgdStrokeColor = color(25);
+}
+
+function saveLoop() {
+  //  2*PI/0.04 = gifLength;
+  if (
+    confirm(
+      'Click OK to generate your gif.\nThe process will take a minute. Be patient, plz!'
+    )
+  ) {
+    // speedSlider.value(0.04);
+    gifStart = frameCount;
+    gifEnd = gifStart + gifLength;
+    gifRecord = true;
+  } else {
+    gifRecord = false;
+  }
 }

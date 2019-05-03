@@ -12,20 +12,12 @@ export default {
   data() {
     return {
       sketch: null,
-      publicPath: process.env.BASE_URL,
-      filename: 'sketch.js'
+      publicPath: process.env.BASE_URL
     };
   },
   created() {},
   mounted() {
-
-    debugger;
-    var query = new URLSearchParams(window.location.search);
-    if(query.get('sketch') !== null){ 
-      this.filename = query.get('sketch');
-    }
-
-    this.startP5Sketch(this.filename);
+    this.startP5Sketch();
     // setTimeout(() => {
       // this.startP5Sketch('sketch_stripes.js');
     // },2000);
@@ -34,7 +26,7 @@ export default {
   watch: {},
   computed: {},
   methods: {
-    startP5Sketch(filename) {
+    startP5Sketch() {
       console.log(`Sketch / methods: startP5Sketch`);
 
       // let sketch = p => {
@@ -62,7 +54,7 @@ export default {
       this.$nextTick(() => {  
         var script = document.createElement(`script`);
         script.type = `text/javascript`;
-        script.src = `${this.publicPath}sketches/${filename}`;
+        script.src = `${this.publicPath}sketches/${this.$root.sketch_to_load}`;
         sketch_element.appendChild(script);
         // this.sketch = new p5('./sketches/sketch.js', sketch_element);
       });

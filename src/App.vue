@@ -4,7 +4,6 @@
     <div class="bottom">
       <h1> Lure Type Generator </h1>
       <textarea id="textfield" autofocus>instant t</textarea>
-              
       <div class="slug">
         <p>forked from spacetypegenerator.com by <a href="http://www.kielm.com">kielm</a></p>
         <!-- <button onclick="myFunction()">ReadMe</button> -->
@@ -13,18 +12,27 @@
   
     <div class="top">
       <h3><a href="index.html">CYLINDER</a></h3>
-      <h3><a href="field.html">FIELD</a></h3>
+      <h3><a href="index.html?sketch=sketch_field">FIELD</a></h3>
       <h3><a href="index.html?sketch=sketch_stripes">STRIPES</a></h3>
-      <h3><a href="coil.html">COIL</a></h3>
-      <h3><a href="flag.html">FLAG</a></h3>  
-      <label>Famille de caractère</label>
-      <select v-model="font.selected">
-        <option v-for="font in font.available" :key="font" :value="font">
-          {{ font }}
-        </option>
-      </select>
-      {{ font.selected }}
+      <h3><a href="index.html?sketch=sketch_coil_saveBeta">COIL</a></h3>
+      <h3><a href="index.html?sketch=sketch_flag">FLAG</a></h3>
+      <!-- {{ font.selected }} -->
     </div>
+
+    <div class="m_selectType" v-if="!['sketch_field.js', 'sketch_flag.js'].includes($root.sketch_to_load)">
+      <div>
+        <select v-model="font.selected">
+          <option v-for="font in font.available" :key="font" :value="font">
+            {{ font }}
+          </option>
+        </select>
+        <small>Déplacer la typo verticalement {{ move_type_down }}</small>
+        <input type="range" v-model.number="move_type_down" min="-100" max="100" step="1" />
+        <small>Taille typo {{ font_size }}</small>
+        <input type="range" v-model.number="font_size" min="-100" max="100" step="1" />
+      </div>
+    </div>
+
     <Sketch />
   </div>
 </template>
@@ -39,13 +47,17 @@ export default {
   },
   data() {
     return {
+      move_type_down: 0,
+      font_size: 32,
       input_text: 'instant t',
       font: {
-        selected: 'MachoMoustache-Bold.ttf',
+        selected: 'NaokoAAtrial-06-Extrabold.otf',
         available: [
 'IBMPlexMono-Regular.otf',
 
 'Cardone-Bold.otf', 'Cardone-Italic.otf', 'Cardone-Light.otf','Cardone-Regular.otf',
+
+'Le_Murmure-Regular_web.otf',
 
 'NaokoAAtrial-01-Light.otf','NaokoAAtrial-01-LightItalic.otf','NaokoAAtrial-02-Semilight.otf','NaokoAAtrial-02-SemilightItalic.otf','NaokoAAtrial-03-Regular.otf','NaokoAAtrial-03-RegularItalic.otf','NaokoAAtrial-04-Medium.otf','NaokoAAtrial-04-MediumItalic.otf','NaokoAAtrial-05-Bold.otf','NaokoAAtrial-05-BoldItalic.otf','NaokoAAtrial-06-Extrabold.otf','NaokoAAtrial-06-ExtraboldItalic.otf','NaokoAAtrial-07-Black.otf','NaokoAAtrial-07-BlackItalic.otf',
 
@@ -58,14 +70,42 @@ export default {
   },
   watch: {
     'font.selected': function() {
+      this.updateSelectedFont();
+    },
+    'move_type_down': function() {
+      window.move_type_down = this.move_type_down;
+    },
+    'font_size': function() {
+      window.font_size = this.font_size;
+    }
+  },
+  mounted() {
+    window.move_type_down = this.move_type_down;
+    window.font_size = this.font_size;
+    this.updateSelectedFont();
+  },
+  methods: {
+    updateSelectedFont() {
       window.font_filename = this.font.selected;
-      window.font = loadFont(window.base_font_url + '/' + window.font_filename);
+      window.font = loadFont(window.public_url + 'fonts/' + window.font_filename);
     }
   }
 };
 </script>
 
 <style lang="scss">
+body {
+  font-family:'IBM Plex Mono', monospace;
+  position: relative;
+  padding: 0; margin: 0;
+  background-color: #f9f9f9;
+  max-width: 800px;
+  margin: 0 auto;
+  // margin-top: 10vh;
+} 
+canvas {
+  vertical-align: top;
+} 
 .bottom {
   position: fixed;
   bottom:0;
@@ -82,10 +122,14 @@ export default {
   text-align:right;
   padding-right:25px;
   padding-top:20px;
+  width: 320px;
+
+  h3 {
+    background-color: transparent;
+  }
 }
 
 h1 {
-  font-family:'IBM Plex Mono', monospace;
   font-size: 18px;
   font-weight: 100;
   text-align:center;
@@ -95,7 +139,6 @@ h1 {
 }
 
 h2 {
-  font-family:'IBM Plex Mono', monospace;
   font-size: 8px;
   font-style: italic;
   font-weight: 300;
@@ -107,7 +150,6 @@ h2 {
 }
 
 h3 {
-	font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
   text-decoration:underline;
   font-weight: 300;
@@ -123,7 +165,6 @@ b {
 }
 
 p {
-  font-family:'IBM Plex Mono', monospace;
   font-size: 10px;
   font-weight: 300;
   color: #000;
@@ -146,5 +187,35 @@ a:active {
 
 textarea {
   width: 100%;
+}
+
+.m_selectType {
+  position: fixed;
+  top: -4px;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+
+  > * {
+    display: block;
+    margin: 0 auto;
+    width: 250px;
+    background-color: white;
+    border-radius: 4px;
+    padding: .5em;
+    border: 2px solid #000;
+    text-align: center;
+    pointer-events: auto;
+
+    select {
+      width: 100%;
+    }
+    input {
+      width: 100%;
+    }
+    small {
+      font-size: 60%;
+    }
+  }
 }
 </style>

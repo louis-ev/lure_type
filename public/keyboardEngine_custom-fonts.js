@@ -6,12 +6,12 @@ function keyboardEngine() {
   c1 = inpText.charAt(letter_select);
 
   textFont(font);
-  textSize(64);
+  textSize(window.font_size);
   textAlign(CENTER, CENTER);
 
   push();
-  translate(typeX / 2, typeY / 6);
-  scale(typeX / 40, typeY / 40);
+  translate(typeX / 2, window.move_type_down);
+  // scale(typeX / 40, typeY / 40);
   text(c1, 0, 0);
   pop();
 

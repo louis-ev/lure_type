@@ -46,18 +46,18 @@ var canvas;
 var capturer = new CCapture({
   framerate: 60,
   format: 'gif',
-  workersPath: 'js/',
+  workersPath: window.public_url + 'gif/',
   verbose: true
 });
 
 function preload() {
   console.log('preload');
-  window.font = loadFont(window.base_font_url + '/' + window.font_filename);
+  window.font = loadFont(window.public_url + 'fonts/' + window.font_filename);
 }
 
 function setup() {
   console.log('p5 setup');
-  var p5SaveCanvas = createCanvas(windowWidth, windowHeight);
+  var p5SaveCanvas = createCanvas(800, 800);
   canvas = p5SaveCanvas.canvas;
 
   pixelDensity(1);
@@ -141,27 +141,27 @@ function setup() {
   racerSet.position(310, height - 35);
   racerSet.mousePressed(racer);
 
-  inp1 = createColorPicker('#ff0000');
+  inp1 = createColorPicker('#FF6A55');
   inp1.position(180, 20);
   inp1.style('width', '20px');
   inp1check = createCheckbox('', true);
   inp1check.position(160, 22);
-  inp2 = createColorPicker('#ffff00');
+  inp2 = createColorPicker('#FFFFF0');
   inp2.position(180, 50);
   inp2.style('width', '20px');
   inp2check = createCheckbox('', true);
   inp2check.position(160, 52);
-  inp3 = createColorPicker('#0000ff');
+  inp3 = createColorPicker('#FEB2AD');
   inp3.position(180, 80);
   inp3.style('width', '20px');
   inp3check = createCheckbox('', true);
   inp3check.position(160, 82);
-  inp4 = createColorPicker('#ffffff');
+  inp4 = createColorPicker('#218DA6');
   inp4.position(180, 110);
   inp4.style('width', '20px');
   inp4check = createCheckbox('', false);
   inp4check.position(160, 112);
-  inp5 = createColorPicker('#000');
+  inp5 = createColorPicker('#BAF2E8');
   inp5.position(180, 140);
   inp5.style('width', '20px');
   inp5check = createCheckbox('', false);
@@ -183,9 +183,8 @@ function setup() {
 }
 
 function draw() {
-  console.log('draw');
+  // console.log('draw');
   //  strkColor = inp1.value();
-  debugger;
   bkgdColor = bkgdColorPicker.value();
   background(bkgdColor);
 
@@ -285,7 +284,8 @@ function draw() {
     //Type
     setTextColor(k);
     strokeWeight(typeStroke);
-    stroke(strkColor);
+    noStroke();
+    fill(strkColor);
     strokeCap(PROJECT);
     for (var i = 0; i < runLength; i++) {
       var yWaverPre =
@@ -300,11 +300,13 @@ function draw() {
       push();
       translate(i * xSpace + k * ribbonSpaceX, k * ribbonSpaceY + yWaver);
       rotate(rotateFix);
-      translate(-typeX / 2, -typeY / 2);
+      translate(-typeX / 2, -typeY / 1.8);
 
       keyboardEngine();
       pop();
     }
+
+    noFill();
   }
   pop();
 

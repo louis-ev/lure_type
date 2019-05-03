@@ -221,7 +221,7 @@ function draw() {
   pieSlice = (2 * PI) / inpText.length;
   rWaveOffset = ((2 * PI) / inpText.length) * rWaveCount;
 
-  if (mouseX > 145 && mouseX < 220 && mouseY > 18 && mouseY < 45) {
+  if (gifRecord) {
   } else {
     textFont(font);
 

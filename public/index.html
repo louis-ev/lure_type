@@ -4,14 +4,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:100,300,300i,400" rel="stylesheet">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>typo_gen_vue</title>
+    <script src="<%= BASE_URL %>p5.min.js"></script>
+    <script src="<%= BASE_URL %>p5.dom.min.js"></script>
+    <title>lure_type</title>
+    <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but typo_gen_vue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
+    <script src="<%= BASE_URL %>keyboardEngine_custom-fonts.js"></script>
+    <script src="<%= BASE_URL %>sketches/sketch.js"></script>
     <!-- built files will be auto injected -->
   </body>
 </html>

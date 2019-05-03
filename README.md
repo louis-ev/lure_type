@@ -1,4 +1,4 @@
-# typo_gen_vue
+# lure_type
 
 ## Project setup
 ```

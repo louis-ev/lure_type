@@ -57,6 +57,7 @@ var presetSimple,
   presetHoops;
 
 function preload() {
+  console.log('sketch - preload');
   // font = loadFont('assets/IBMPlexMono-Regular.otf');
   // ui_font = loadFont(window.base_font_url + '/IBMPlexMono-Regular.otf');
   window.font = loadFont(window.base_font_url + '/' + window.font_filename);
@@ -64,6 +65,7 @@ function preload() {
 }
 
 function setup() {
+  console.log('sketch - setup');
   createCanvas(windowWidth, windowHeight, WEBGL);
   background(bkgdColor);
   smooth();

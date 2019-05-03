@@ -6,6 +6,7 @@ var strecherXslider, strecherXsize;
 var strecherX = 0;
 var strecherYslider, strecherYsize;
 var strecherY = 0;
+// var font, ui_font;
 
 // CYLINDER
 var pieSlice;
@@ -33,8 +34,6 @@ var xRotCamera, yRotCamera, zRotCamera;
 var xRotCameraSlider, yRotCameraSlider, zRotCameraSlider;
 var zoomCamera, zoomCameraSlider;
 
-var font, ui_font;
-
 // STRING
 var letter_select, inp, inpText;
 var myText = [];
@@ -58,9 +57,10 @@ var presetSimple,
   presetHoops;
 
 function preload() {
-  ui_font = loadFont(window.base_font_url + '/IBMPlexMono-Regular.otf');
+  // font = loadFont('assets/IBMPlexMono-Regular.otf');
+  // ui_font = loadFont(window.base_font_url + '/IBMPlexMono-Regular.otf');
+  window.font = loadFont(window.base_font_url + '/' + window.font_filename);
   // font = loadFont('assets/custom_fonts/naoko-aa-02-semilight-webfont.woff');
-  font = loadFont(window.base_font_url + '/IBMPlexMono-Regular.otf');
 }
 
 function setup() {
@@ -205,6 +205,8 @@ function draw() {
 
   if (mouseX > 145 && mouseX < 220 && mouseY > 18 && mouseY < 45) {
   } else {
+    textFont(font);
+
     push();
     translate(-width / 2, -height / 2);
     stroke(bkgdStrokeColor);
@@ -217,8 +219,6 @@ function draw() {
     fill(strkColor);
     textSize(9);
     textAlign(LEFT);
-    textFont(ui_font);
-
     text('CYLINDER: Radius ' + radius, 15, 16);
     text('CYLINDER: Count ' + stackNum, 15, 46);
     text('CYLINDER: Rotate ' + rRotate, 15, 76);
@@ -376,6 +376,7 @@ function draw() {
       );
     }
 
+    textFont(font);
     translate(-(typeX + strecherX) / 2, -(typeY + strecherY) / 2, 0);
     // outer surface
     fill(strkColor);

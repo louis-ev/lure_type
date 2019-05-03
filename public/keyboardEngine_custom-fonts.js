@@ -5,9 +5,9 @@ function keyboardEngine() {
 
   c1 = inpText.charAt(letter_select);
 
+  textFont(font);
   textSize(64);
   textAlign(CENTER, CENTER);
-  textFont(font);
 
   push();
   translate(typeX / 2, typeY / 6);

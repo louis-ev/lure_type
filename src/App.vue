@@ -3,7 +3,7 @@
 
     <div class="bottom">
       <h1> Lure Type Generator </h1>
-      <textarea id="textfield" autofocus v-model="input_text" />
+      <textarea id="textfield" autofocus>instant t</textarea>
               
       <div class="slug">
         <p>forked from spacetypegenerator.com by <a href="http://www.kielm.com">kielm</a><br><br>
@@ -43,6 +43,7 @@ export default {
 </script>
 
 <style lang="scss">
+/* eslint-disable */
 .bottom {
   position: fixed;
   bottom:0;

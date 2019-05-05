@@ -1,5 +1,7 @@
 <template>
-  <div ref="sketch"></div>
+  <div>
+    <div ref="sketch"></div>
+  </div>
 </template>
 <script>
 import { setTimeout } from 'timers';
@@ -44,12 +46,11 @@ export default {
       let sketch_element = this.$refs.sketch;
       sketch_element.innerHTML = "";
 
-      var ele = document.getElementsByName("canvas");
+      var ele = document.getElementsByTagName("canvas");
       for(var i = ele.length-1;i>=0;i--)
       {
         ele[i].parentNode.removeChild(ele[i]);
       }
-
 
       this.$nextTick(() => {  
         var script = document.createElement(`script`);

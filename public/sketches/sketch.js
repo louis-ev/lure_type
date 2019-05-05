@@ -144,15 +144,15 @@ function setup() {
   xRotCameraSlider = createSlider(-180, 180, 15);
   xRotCameraSlider.position(-20, height - 107);
   xRotCameraSlider.style('width', '100px');
-  xRotCameraSlider.style('rotate', 270);
+  xRotCameraSlider.style('rotate', '270deg');
   yRotCameraSlider = createSlider(-180, 180, 0);
   yRotCameraSlider.position(20, height - 107);
   yRotCameraSlider.style('width', '100px');
-  yRotCameraSlider.style('rotate', 270);
+  yRotCameraSlider.style('rotate', '270deg');
   zRotCameraSlider = createSlider(-180, 180, 0);
   zRotCameraSlider.position(60, height - 107);
   zRotCameraSlider.style('width', '100px');
-  zRotCameraSlider.style('rotate', 270);
+  zRotCameraSlider.style('rotate', '270deg');
   zoomCameraSlider = createSlider(-500, 500, 0);
   zoomCameraSlider.position(15, height - 20);
   zoomCameraSlider.style('width', '100px');

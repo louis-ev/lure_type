@@ -966,7 +966,7 @@ function saveLoop() {
       'Click OK to generate your gif.\nThe process will take a minute. Be patient, plz!'
     )
   ) {
-    waveSpeedSlider.value(0.04);
+    // waveSpeedSlider.value(0.04);
     gifStart = frameCount;
     gifEnd = gifStart + gifLength;
     gifRecord = true;

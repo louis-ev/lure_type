@@ -57,13 +57,13 @@ var presetSimple,
   presetHoops;
 
 // SAVE BETA
-var gifLength = 200;
+var gifLength = 314;
 var gifStart, gifEnd;
 var gifRecord = false;
 var canvas;
 
 var capturer = new CCapture({
-  framerate: 60,
+  framerate: 30,
   format: 'gif',
   workersPath: window.public_url + 'gif/',
   verbose: true

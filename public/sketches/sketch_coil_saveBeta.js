@@ -37,17 +37,12 @@ var inpNumber = 4;
 var presetStacks;
 
 // SAVE BETA
-var gifLength = 157;
+var gifLength = 314;
 var gifStart, gifEnd;
 var gifRecord = false;
 var canvas;
 
-var capturer = new CCapture({
-  framerate: 30,
-  format: 'gif',
-  workersPath: window.public_url + 'gif/',
-  verbose: true
-});
+var capturer;
 
 function preload() {
   // window.font = loadFont(window.public_url + 'fonts/' + window.font_filename);
@@ -970,6 +965,13 @@ function saveLoop() {
     gifStart = frameCount;
     gifEnd = gifStart + gifLength;
     gifRecord = true;
+
+    capturer = new CCapture({
+      framerate: 30,
+      format: 'gif',
+      workersPath: window.public_url + 'gif/',
+      verbose: true
+    });
   } else {
     gifRecord = false;
   }

@@ -66,7 +66,7 @@ var presetStacks,
   presetHarlequin;
 
 // SAVE BETA
-var gifLength = 314 / 2;
+var gifLength = 314;
 var gifStart, gifEnd;
 var gifRecord = false;
 var canvas;
@@ -866,7 +866,7 @@ function saveLoop() {
     console.log(`about to make a gif of ${gifLength} images`);
 
     capturer = new CCapture({
-      framerate: 60,
+      framerate: 30,
       format: 'gif',
       workersPath: window.public_url + 'gif/',
       verbose: true

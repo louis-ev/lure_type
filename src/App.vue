@@ -110,7 +110,7 @@ body {
   position: relative;
   padding: 0; margin: 0;
   background-color: #f9f9f9;
-  max-width: 800px;
+  max-width: 1024px;
   margin: 0 auto;
   // margin-top: 10vh;
 } 

@@ -6,8 +6,8 @@ Vue.config.productionTip = false;
 // eslint-disable-next-line
 new p5();
 
-window.windowWidth = 800;
-window.windowHeight = 800;
+window.windowWidth = 1024;
+window.windowHeight = 768;
 
 // eslint-disable-next-line
 window.public_url = process.env.BASE_URL;

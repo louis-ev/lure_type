@@ -49,17 +49,12 @@ var strkColor, ribbonColor;
 var backSide = true;
 
 // SAVE BETA
-var gifLength = 157;
+var gifLength = 314;
 var gifStart, gifEnd;
 var gifRecord = false;
 var canvas;
 
-var capturer = new CCapture({
-  framerate: 60,
-  format: 'gif',
-  workersPath: window.public_url + 'gif/',
-  verbose: true
-});
+var capturer;
 
 function preload() {
   // font = loadFont('assets/IBMPlexMono-Regular.otf');
@@ -1180,10 +1175,17 @@ function saveLoop() {
       'Click OK to generate your gif.\nThe process will take a minute. Be patient, plz!'
     )
   ) {
-    speedSlider.value(0.04);
+    // speedSlider.value(0.04);
     gifStart = frameCount;
     gifEnd = gifStart + gifLength;
     gifRecord = true;
+
+    capturer = new CCapture({
+      framerate: 30,
+      format: 'gif',
+      workersPath: window.public_url + 'gif/',
+      verbose: true
+    });
   } else {
     gifRecord = false;
   }

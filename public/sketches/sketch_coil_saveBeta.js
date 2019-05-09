@@ -37,7 +37,7 @@ var inpNumber = 4;
 var presetStacks;
 
 // SAVE BETA
-var gifLength = 314;
+var gifLength = 150;
 var gifStart, gifEnd;
 var gifRecord = false;
 var canvas;
@@ -49,10 +49,9 @@ function preload() {
 }
 
 function setup() {
+  pixelDensity(1);
   var p5SaveCanvas = createCanvas(windowWidth, windowHeight);
   canvas = p5SaveCanvas.canvas;
-
-  pixelDensity(1);
 
   background(bkgdColor);
   smooth();

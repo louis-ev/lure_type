@@ -66,7 +66,7 @@ var presetStacks,
   presetHarlequin;
 
 // SAVE BETA
-var gifLength = 314;
+var gifLength = 150;
 var gifStart, gifEnd;
 var gifRecord = false;
 var canvas;
@@ -79,6 +79,7 @@ function preload() {
 }
 
 function setup() {
+  pixelDensity(1);
   console.log('setup');
   strkColor = color(0);
   bkgdColor = color(255);

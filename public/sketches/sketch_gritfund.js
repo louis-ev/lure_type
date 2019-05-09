@@ -76,6 +76,7 @@ function preload() {
 }
 
 function setup() {
+  pixelDensity(1);
   strkColor = color(0);
   bkgdColor = color(255);
 

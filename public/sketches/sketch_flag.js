@@ -49,7 +49,7 @@ var strkColor, ribbonColor;
 var backSide = true;
 
 // SAVE BETA
-var gifLength = 314;
+var gifLength = 150;
 var gifStart, gifEnd;
 var gifRecord = false;
 var canvas;
@@ -61,6 +61,7 @@ function preload() {
 }
 
 function setup() {
+  pixelDensity(1);
   var p5SaveCanvas = createCanvas(windowWidth, windowHeight, WEBGL);
   canvas = p5SaveCanvas.canvas;
 

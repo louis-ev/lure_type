@@ -38,7 +38,7 @@ var inpNumber = 3;
 var presetStacks;
 
 // SAVE BETA
-var gifLength = 314;
+var gifLength = 150;
 var gifStart, gifEnd;
 var gifRecord = false;
 var canvas;
@@ -51,8 +51,9 @@ function preload() {
 }
 
 function setup() {
+  pixelDensity(1);
   console.log('p5 setup');
-  var p5SaveCanvas = createCanvas(1024, 768);
+  var p5SaveCanvas = createCanvas(window.windowWidth, window.windowHeight);
   canvas = p5SaveCanvas.canvas;
 
   pixelDensity(1);

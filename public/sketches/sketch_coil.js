@@ -41,6 +41,7 @@ function preload() {
 }
 
 function setup() {
+  pixelDensity(1);
   createCanvas(windowWidth, windowHeight);
   background(bkgdColor);
   smooth();

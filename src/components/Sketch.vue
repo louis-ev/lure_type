@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import { setTimeout } from 'timers';
+import { setTimeout, setInterval } from 'timers';
 // import p5 from "p5";
 // import sketch from './sketches/sketch.js';
 
@@ -20,9 +20,6 @@ export default {
   created() {},
   mounted() {
     this.startP5Sketch();
-    // setTimeout(() => {
-      // this.startP5Sketch('sketch_stripes.js');
-    // },2000);
   },
   beforeDestroy() {},
   watch: {},
@@ -52,13 +49,29 @@ export default {
         ele[i].parentNode.removeChild(ele[i]);
       }
 
-      this.$nextTick(() => {  
+      // const vars_to_save = ['typeX', 'typeY'];
+      // var saved = JSON.parse(localStorage.getItem(this.$root.sketch_to_load));
+      // Object.keys(saved).map((prop) => window[prop] = saved[prop]);
+      // console.log(window.typeX);
+
+      this.$nextTick(() => {
         var script = document.createElement(`script`);
         script.type = `text/javascript`;
         script.src = `${this.publicPath}sketches/${this.$root.sketch_to_load}`;
         sketch_element.appendChild(script);
         // this.sketch = new p5('./sketches/sketch.js', sketch_element);
       });
+
+      setInterval(() => {
+        const to_save = vars_to_save.reduce((acc, v) => {
+          acc[v] = window[v];
+          return acc;
+        }, {});
+        localStorage.setItem(
+          this.$root.sketch_to_load,
+          JSON.stringify(to_save)
+        );
+      }, 1000);
     }
   }
 };
